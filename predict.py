@@ -53,10 +53,10 @@ def predict_img(net,
 def get_args():
     parser = argparse.ArgumentParser(description='Predict masks from input images',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--model', '-m', default='checkpoints/CP_epoch5.pth',
+    parser.add_argument('--model', '-m', default='checkpoints/CP_epoch6.pth',
                         metavar='FILE',
                         help="Specify the file in which the model is stored")
-    parser.add_argument('--input', '-i', metavar='INPUT', nargs='+', default=['/home/trd/code/Pytorch-UNet/data/test/CH3_2.bmp'], 
+    parser.add_argument('--input', '-i', metavar='INPUT', nargs='+', default=['/home/trd/code/Pytorch-UNet/data/test/210330000029-CH3_14.bmp'], 
                         help='filenames of input images', required=False)
 
     parser.add_argument('--output', '-o', metavar='INPUT', nargs='+',

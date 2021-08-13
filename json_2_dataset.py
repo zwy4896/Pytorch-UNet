@@ -34,5 +34,5 @@ def load_json(json_file):
 
     return data
 if __name__ == "__main__":
-    img_dir = '/home/trd/share/DATASET/train'
+    img_dir = '/home/trd/share/DATASET/train_'
     main(img_dir)

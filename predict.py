@@ -1,6 +1,7 @@
 import argparse
 import logging
 import os
+from struct import pack_into
 
 import numpy as np
 import torch
@@ -52,17 +53,17 @@ def predict_img(net,
 def get_args():
     parser = argparse.ArgumentParser(description='Predict masks from input images',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--model', '-m', default='MODEL.pth',
+    parser.add_argument('--model', '-m', default='checkpoints/CP_epoch5.pth',
                         metavar='FILE',
                         help="Specify the file in which the model is stored")
-    parser.add_argument('--input', '-i', metavar='INPUT', nargs='+',
-                        help='filenames of input images', required=True)
+    parser.add_argument('--input', '-i', metavar='INPUT', nargs='+', default=['/home/trd/code/Pytorch-UNet/data/test/CH3_2.bmp'], 
+                        help='filenames of input images', required=False)
 
     parser.add_argument('--output', '-o', metavar='INPUT', nargs='+',
                         help='Filenames of ouput images')
     parser.add_argument('--viz', '-v', action='store_true',
                         help="Visualize the images as they are processed",
-                        default=False)
+                        default=True)
     parser.add_argument('--no-save', '-n', action='store_true',
                         help="Do not save the output masks",
                         default=False)
@@ -101,7 +102,6 @@ if __name__ == "__main__":
     args = get_args()
     in_files = args.input
     out_files = get_output_filenames(args)
-
     net = UNet(n_channels=3, n_classes=1)
 
     logging.info("Loading model {}".format(args.model))
